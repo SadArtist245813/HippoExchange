@@ -1,0 +1,5 @@
+Google Gemini:
+	javascript current datatime
+
+Grok 4:
+	
