@@ -1,6 +1,8 @@
 Google Gemini:
 	javascript current datatime
+		- to see other possible options
 
 	nodejs insert into mysql database
-
+		- needed an example to study over and impliment
+		- I got <database>.query() allowing to implement values to insert into the database
 Grok 4:

@@ -1,5 +1,11 @@
 SHOW TABLES;
 
+SELECT * FROM tblUsers;
+SELECT * FROM tblSessions;
+SELECT * FROM tblBrands;
+SELECT * FROM tblInventory;
+SELECT * FROM tblLoans;
+
 CREATE TABLE tblUsers(
 	Email VARCHAR(250) PRIMARY KEY,
 	FirstName VARCHAR(25),
@@ -7,7 +13,7 @@ CREATE TABLE tblUsers(
     Password VARCHAR(500),
     CreatedDateTime datetime,
     LastUsedDateTime datetime
-);
+); 
 
 CREATE TABLE tblSessions(
 	SessionID VARCHAR(50) PRIMARY KEY,
