@@ -1,8 +1,50 @@
-Google Gemini:
+In basics, I used AI to help understand nodejs usage and add more options to my tool box so when I programmed
+the logic for each route, my understanding for error handling, nodejs, and formating were better
+
+Google Chrome Gemini:
 	javascript current datatime
 		- to see other possible options
 
 	nodejs insert into mysql database
 		- needed an example to study over and impliment
-		- I got <database>.query() allowing to implement values to insert into the database
+		- I got <database>.query() allowing to implement sql lines and value
+
+	what is the 403, 401, 500, 400, and 200 error codes
+		- as I was searching throughout the internet for examples, I got curious
+
+	how to use regexp in javascript
+		- needed a refresher on how it worked
+
 Grok 4:
+	do basic fixes to this code nodejs code
+		app.post('/user', (req, res, next) => {
+			let email = req.body.email
+			let password = req.body.password
+			let firstName = req.body.firstName
+			let lastName = req.body.lastName
+
+ 	   		try{
+	        	let sql = 'INSERT INTO tblUsers (Email, FirstName, LastName, Password, CreatedDateTime, LastUsedDateTime) VALUES (?, ?, ?, ?, NOW(), NOW())'
+ 	           	let values = [email, password, firstName, lastName]
+	            hippoExchange.query(sql, values, (err, result) => {
+	            	res.json({status:"Success"})
+	        	})
+ 	   		}catch(error){
+        		console.error('Unexpected error:', error)
+        		res.status(500).json({ status: 'Failed', error: 'Unexpected error occurred' })
+    		}
+		})
+
+		- I ask for this code to have basic fixes to be better so I can understand and implement better ideas as I programmed the other routes
+		- once I figued out the ideas, a lot of my code became a lot of copy and pasting since it became extremely repetitive
+		- was eventually change to add bycrypt hashing and and regex validation
+
+	why do we input code into nodejs functions as a variable and how does it return its variables
+		- I did this to understand nodejs functions since I have never gone far enough to understand this much of javascript
+		- gave an cool idea on how to find user using a SessionID in the getSessionUser
+
+	give me an example and explination of how bycrypt nodejs works
+		- I wanted a stright forward explination of bycrypt
+
+	give me an example and explination of how uuid nodejs works
+		- I wanted a stright forward explination of uuid
