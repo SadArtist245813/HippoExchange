@@ -42,3 +42,5 @@ DROP TABLE tblSessions;
 DROP TABLE tblBrands;
 DROP TABLE tblInventory;
 DROP TABLE tblLoans;
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY '2025!';

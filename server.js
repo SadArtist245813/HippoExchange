@@ -1,28 +1,34 @@
 const express = require('express')
-const cors = require('cors')
 const mysql = require('mysql2')
-const HTTP_PORT = 3306
+const cors = require('cors')
+const HTTP_PORT = 8000
+
 
 var app = express()
 app.use(cors())
+app.use(express.json())
+
 const objConnectionData = {
     host: 'localhost',
     user: 'root',
-    port: HTTP_PORT,
-    password: '',
-    database: 'hippo_exchange'
+    port: 3306,
+    password: '2025!',
+    database: 'hippoexchange'
 }
 
 const hippoExchange = mysql.createConnection(objConnectionData)
+
 hippoExchange.connect(err => {
-    if (err) {
-        console.log("Connection did not work: ", err)
-    } else {
-        console.log("Success")
-        let strQuery = "SELECT * FROM tblTrees"
+    if(err){
+        console.log("Connection did not work: ", err);
+    }else{
+        console.log("Success");
+        let strQuery = "SELECT * FROM tblTrees";
         hippoExchange.query(strQuery, (err, results, fields) => {
-            if (err) {
-                console.error("")
+            if(err){
+                console.error("Query error: ", err);
+            }else{
+                console.log("Query results: ", results); // Log results for debugging
             }
         })
     }
@@ -33,17 +39,17 @@ app.listen(HTTP_PORT, () => {
 })
 
 app.post('/user', (req, res, next) => {
-    let { Email, Password, FirstName, LastName } = req.body;
+    let {Email, Password, FirstName, LastName} = req.body;
 
     if (!Email || !Password || !FirstName || !LastName) {
-        return res.status(400).send('... are required.');
+        return res.status(400).json({error: 'Email, Password, FirstName, and LastName are required.'});
     }
 
     let sql = 'INSERT INTO tblusers (Email, Password, FirstName, LastName, CurrentDateTime) VALUES (?, ?, ?, ?, NOW())';
-    let values = [ Email, Password, FirstName, LastName ];
+    let values = [Email, Password, FirstName, LastName];
 
     hippoExchange.query(sql, values, (err, result) => {
-        if (err) {
+        if(err){
             console.error('Error inserting data:', err);
             return res.status(500).json('status:Success');
         }
