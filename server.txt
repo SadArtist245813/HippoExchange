@@ -1,33 +1,21 @@
 const express = require('express')
-const mysql = require('mysql2')
-<<<<<<< HEAD
 const cors = require('cors')
-const HTTP_PORT = 8000
-
-=======
+const mysql = require('mysql2')
 const { v4: uuidv4 } = require('uuid')
 const bcrypt = require('bcrypt')
 const HTTP_PORT = 8000
->>>>>>> 9afb3d501c8834b73b25a9cb259b42057016f6a6
 
 var app = express()
 app.use(cors())
 app.use(express.json())
 
-<<<<<<< HEAD
-=======
 //Database connection data
->>>>>>> 9afb3d501c8834b73b25a9cb259b42057016f6a6
 const objConnectionData = {
     host: 'localhost',
     user: 'root',
     port: 3306,
     password: '2025!',
-<<<<<<< HEAD
-    database: 'hippoexchange'
-=======
     database: 'hippo_exchange'
->>>>>>> 9afb3d501c8834b73b25a9cb259b42057016f6a6
 }
 
 //Test connection too public xampp database since I broke my mysql at some point XD 
@@ -42,20 +30,8 @@ const objConnectionData = {
 
 //Create and check mysql database connection
 const hippoExchange = mysql.createConnection(objConnectionData)
-
 hippoExchange.connect(err => {
     if(err){
-<<<<<<< HEAD
-        console.log("Connection did not work: ", err);
-    }else{
-        console.log("Success");
-        let strQuery = "SELECT * FROM tblTrees";
-        hippoExchange.query(strQuery, (err, results, fields) => {
-            if(err){
-                console.error("Query error: ", err);
-            }else{
-                console.log("Query results: ", results); // Log results for debugging
-=======
         console.log("Connection did not work: ", err)
     }else{
         console.log("Success")
@@ -63,7 +39,6 @@ hippoExchange.connect(err => {
         hippoExchange.query(strQuery, (err, results, fields) => {
             if(err){
                 console.error('Unexpected error:', error)
->>>>>>> 9afb3d501c8834b73b25a9cb259b42057016f6a6
             }
         })
     }
@@ -98,25 +73,6 @@ const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]
  * Validates the input, hashes the password, and inserts the user into the database.
  */
 app.post('/user', (req, res, next) => {
-<<<<<<< HEAD
-    let {Email, Password, FirstName, LastName} = req.body;
-
-    if (!Email || !Password || !FirstName || !LastName) {
-        return res.status(400).json({error: 'Email, Password, FirstName, and LastName are required.'});
-    }
-
-    let sql = 'INSERT INTO tblusers (Email, Password, FirstName, LastName, CurrentDateTime) VALUES (?, ?, ?, ?, NOW())';
-    let values = [Email, Password, FirstName, LastName];
-
-    hippoExchange.query(sql, values, (err, result) => {
-        if(err){
-            console.error('Error inserting data:', err);
-            return res.status(500).json('status:Success');
-        }
-        console.log('Data inserted successfully:', result);
-        res.status(201).json('status:Failed');
-    });
-=======
     let {email, password, firstName, lastName} = req.body
 
     if(!email || !password || !firstName || !lastName){
@@ -146,7 +102,6 @@ app.post('/user', (req, res, next) => {
         console.error('Unexpected error:', error)
         res.status(500).json({ status: 'Failed', error: 'Unexpected error occurred' })
     }
->>>>>>> 9afb3d501c8834b73b25a9cb259b42057016f6a6
 })
 
 //#2
